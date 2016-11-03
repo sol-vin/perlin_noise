@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta id="repository-name" content="github.com/redcodefinal/perlin_noise">
+  <link href="css/style.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="js/doc.js"></script>
+  <title>PerlinNoise - github.com/redcodefinal/perlin_noise</title>
+</head>
+<body>
+
+<div id="types-list">
+  <div id="search-box">
+    <input type="search" id="search-input" placeholder="Search...">
+  </div>
+
+  <ul>
+    <li><a href="index.html">README</a></li>
+  </ul>
+
+  <ul>
+  
+  <li class=" current" data-id="github.com/redcodefinal/perlin_noise/PerlinNoise" data-name="perlinnoise">
+      <a href="PerlinNoise.html">PerlinNoise</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/redcodefinal/perlin_noise/SimplexNoise" data-name="simplexnoise">
+      <a href="SimplexNoise.html">SimplexNoise</a>
+      
+    </li>
+  
+</ul>
+
+</div>
+
+<div id="main-content">
+<h1 class="type-name">
+
+  <span class="kind">class</span> PerlinNoise
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="PerlinNoise.html">PerlinNoise</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>Defined in:</h2>
+  
+    
+      <a href="https://github.com/redcodefinal/perlin_noise/blob/bb81c68493daef67b7e7215700e697e04e50d28e/src/perlin_noise/perlin_noise.cr#L1" target="_blank">perlin_noise/perlin_noise.cr</a>
+    
+    <br/>
+  
+    
+      <a href="https://github.com/redcodefinal/perlin_noise/blob/bb81c68493daef67b7e7215700e697e04e50d28e/src/perlin_noise/version.cr#L1" target="_blank">perlin_noise/version.cr</a>
+    
+    <br/>
+  
+
+
+
+  
+    <h2>Constant Summary</h2>
+  
+  <dl>
+    
+      <dt class="entry-const" id="VERSION">
+        <strong>VERSION</strong> = <code><span class="s">&quot;0.1.0&quot;</span></code>
+      </dt>
+      
+    
+  </dl>
+
+
+
+  <h2>Class Method Summary</h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new%28seed%3D1%29-class-method" class="signature"><strong>.new</strong>(seed = <span class="n">1</span>)</a>
+        
+      </li>
+    
+  </ul>
+
+
+
+  <h2>Instance Method Summary</h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#bool%28x%3AInt%2Cchance%3AInt%2Coutof%3AInt%29-instance-method" class="signature"><strong>#bool</strong>(x : Int, chance : Int, outof : Int)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#bool%28x%3AInt%2Cy%3AInt%2Cchance%3AInt%2Coutof%3AInt%29-instance-method" class="signature"><strong>#bool</strong>(x : Int, y : Int, chance : Int, outof : Int)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#bool%28x%3AInt%2Cy%3AInt%2Cz%3AInt%2Cchance%3AInt%2Coutof%3AInt%29-instance-method" class="signature"><strong>#bool</strong>(x : Int, y : Int, z : Int, chance : Int, outof : Int)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#float%28x%3AInt%2Cy%3AInt%2Cz%3AInt%2Clow%3AFloat%2Chigh%3AFloat%29%3AFloat-instance-method" class="signature"><strong>#float</strong>(x : Int, y : Int, z : Int, low : Float, high : Float) : Float</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#float%28x%3AInt%2Cy%3AInt%2Clow%3AFloat%2Chigh%3AFloat%29%3AFloat-instance-method" class="signature"><strong>#float</strong>(x : Int, y : Int, low : Float, high : Float) : Float</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#float%28x%3AInt%2Clow%3AFloat%2Chigh%3AFloat%29%3AFloat-instance-method" class="signature"><strong>#float</strong>(x : Int, low : Float, high : Float) : Float</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#height%28x%3AInt%2Cy%3AInt%2Cmax_height%3AInt%3D10%29%3AInt-instance-method" class="signature"><strong>#height</strong>(x : Int, y : Int, max_height : Int = <span class="n">10</span>) : Int</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#int%28x%3AInt%2Cy%3AInt%2Clow%3AInt%2Chigh%3AInt%29%3AInt-instance-method" class="signature"><strong>#int</strong>(x : Int, y : Int, low : Int, high : Int) : Int</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#int%28x%3AInt%2Cy%3AInt%2Cz%3AInt%2Clow%3AInt%2Chigh%3AInt%29%3AInt-instance-method" class="signature"><strong>#int</strong>(x : Int, y : Int, z : Int, low : Int, high : Int) : Int</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#int%28x%3AInt%2Clow%3AInt%2Chigh%3AInt%29%3AInt-instance-method" class="signature"><strong>#int</strong>(x : Int, low : Int, high : Int) : Int</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#item%28x%3AInt%2Cy%3AInt%2Cz%3AInt%2Carray%3AIndexable%28T%29%29%3ATforallT-instance-method" class="signature"><strong>#item</strong>(x : Int, y : Int, z : Int, array : Indexable(T)) : T forall T</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#item%28x%3AInt%2Cy%3AInt%2Carray%3AIndexable%28T%29%29%3ATforallT-instance-method" class="signature"><strong>#item</strong>(x : Int, y : Int, array : Indexable(T)) : T forall T</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#item%28x%3AInt%2Carray%3AIndexable%28T%29%29%3ATforallT-instance-method" class="signature"><strong>#item</strong>(x : Int, array : Indexable(T)) : T forall T</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#noise%28x%3AInt%29%3AFloat-instance-method" class="signature"><strong>#noise</strong>(x : Int) : Float</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#noise%28x%3AInt%2Cy%3AInt%29%3AFloat-instance-method" class="signature"><strong>#noise</strong>(x : Int, y : Int) : Float</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#noise%28x%3AInt%2Cy%3AInt%2Cz%3AInt%29%3AFloat-instance-method" class="signature"><strong>#noise</strong>(x : Int, y : Int, z : Int) : Float</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#octave%3AFloat32-instance-method" class="signature"><strong>#octave</strong> : Float32</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#octave%3D%28octave%3AFloat32%29-instance-method" class="signature"><strong>#octave=</strong>(octave : Float32)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#persistance%3AFloat32-instance-method" class="signature"><strong>#persistance</strong> : Float32</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#persistance%3D%28persistance%3AFloat32%29-instance-method" class="signature"><strong>#persistance=</strong>(persistance : Float32)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#seed%3AInt32-instance-method" class="signature"><strong>#seed</strong> : Int32</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#step%3AFloat32-instance-method" class="signature"><strong>#step</strong> : Float32</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#step%3D%28step%3AFloat32%29-instance-method" class="signature"><strong>#step=</strong>(step : Float32)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#x_offset%3AFloat32-instance-method" class="signature"><strong>#x_offset</strong> : Float32</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#x_offset%3D%28x_offset%3AFloat32%29-instance-method" class="signature"><strong>#x_offset=</strong>(x_offset : Float32)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#y_offset%3AFloat32-instance-method" class="signature"><strong>#y_offset</strong> : Float32</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#y_offset%3D%28y_offset%3AFloat32%29-instance-method" class="signature"><strong>#y_offset=</strong>(y_offset : Float32)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#z_offset%3AFloat32-instance-method" class="signature"><strong>#z_offset</strong> : Float32</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#z_offset%3D%28z_offset%3AFloat32%29-instance-method" class="signature"><strong>#z_offset=</strong>(z_offset : Float32)</a>
+        
+      </li>
+    
+  </ul>
+
+
+
+
+
+<div class="methods-inherited">
+  
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+  
+</div>
+
+
+  <h2>Class Method Detail</h2>
+  
+    <div class="entry-detail" id="new&#40;seed&#61;1&#41;-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(seed = <span class="n">1</span>)
+
+        <a class="method-permalink" href="#new%28seed%3D1%29-class-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/redcodefinal/perlin_noise/blob/bb81c68493daef67b7e7215700e697e04e50d28e/src/perlin_noise/perlin_noise.cr#L13" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+  <h2>Instance Method Detail</h2>
+  
+    <div class="entry-detail" id="bool&#40;x:Int,chance:Int,outof:Int&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>bool</strong>(x : Int, chance : Int, outof : Int)
+
+        <a class="method-permalink" href="#bool%28x%3AInt%2Cchance%3AInt%2Coutof%3AInt%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/redcodefinal/perlin_noise/blob/bb81c68493daef67b7e7215700e697e04e50d28e/src/perlin_noise/perlin_noise.cr#L62" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="bool&#40;x:Int,y:Int,chance:Int,outof:Int&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>bool</strong>(x : Int, y : Int, chance : Int, outof : Int)
+
+        <a class="method-permalink" href="#bool%28x%3AInt%2Cy%3AInt%2Cchance%3AInt%2Coutof%3AInt%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/redcodefinal/perlin_noise/blob/bb81c68493daef67b7e7215700e697e04e50d28e/src/perlin_noise/perlin_noise.cr#L67" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="bool&#40;x:Int,y:Int,z:Int,chance:Int,outof:Int&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>bool</strong>(x : Int, y : Int, z : Int, chance : Int, outof : Int)
+
+        <a class="method-permalink" href="#bool%28x%3AInt%2Cy%3AInt%2Cz%3AInt%2Cchance%3AInt%2Coutof%3AInt%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/redcodefinal/perlin_noise/blob/bb81c68493daef67b7e7215700e697e04e50d28e/src/perlin_noise/perlin_noise.cr#L72" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="float&#40;x:Int,y:Int,z:Int,low:Float,high:Float&#41;:Float-instance-method">
+      <div class="signature">
+        
+        def <strong>float</strong>(x : Int, y : Int, z : Int, low : Float, high : Float) : Float
+
+        <a class="method-permalink" href="#float%28x%3AInt%2Cy%3AInt%2Cz%3AInt%2Clow%3AFloat%2Chigh%3AFloat%29%3AFloat-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/redcodefinal/perlin_noise/blob/bb81c68493daef67b7e7215700e697e04e50d28e/src/perlin_noise/perlin_noise.cr#L57" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="float&#40;x:Int,y:Int,low:Float,high:Float&#41;:Float-instance-method">
+      <div class="signature">
+        
+        def <strong>float</strong>(x : Int, y : Int, low : Float, high : Float) : Float
+
+        <a class="method-permalink" href="#float%28x%3AInt%2Cy%3AInt%2Clow%3AFloat%2Chigh%3AFloat%29%3AFloat-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/redcodefinal/perlin_noise/blob/bb81c68493daef67b7e7215700e697e04e50d28e/src/perlin_noise/perlin_noise.cr#L52" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="float&#40;x:Int,low:Float,high:Float&#41;:Float-instance-method">
+      <div class="signature">
+        
+        def <strong>float</strong>(x : Int, low : Float, high : Float) : Float
+
+        <a class="method-permalink" href="#float%28x%3AInt%2Clow%3AFloat%2Chigh%3AFloat%29%3AFloat-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/redcodefinal/perlin_noise/blob/bb81c68493daef67b7e7215700e697e04e50d28e/src/perlin_noise/perlin_noise.cr#L47" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="height&#40;x:Int,y:Int,max_height:Int&#61;10&#41;:Int-instance-method">
+      <div class="signature">
+        
+        def <strong>height</strong>(x : Int, y : Int, max_height : Int = <span class="n">10</span>) : Int
+
+        <a class="method-permalink" href="#height%28x%3AInt%2Cy%3AInt%2Cmax_height%3AInt%3D10%29%3AInt-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/redcodefinal/perlin_noise/blob/bb81c68493daef67b7e7215700e697e04e50d28e/src/perlin_noise/perlin_noise.cr#L28" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="int&#40;x:Int,y:Int,low:Int,high:Int&#41;:Int-instance-method">
+      <div class="signature">
+        
+        def <strong>int</strong>(x : Int, y : Int, low : Int, high : Int) : Int
+
+        <a class="method-permalink" href="#int%28x%3AInt%2Cy%3AInt%2Clow%3AInt%2Chigh%3AInt%29%3AInt-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/redcodefinal/perlin_noise/blob/bb81c68493daef67b7e7215700e697e04e50d28e/src/perlin_noise/perlin_noise.cr#L37" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="int&#40;x:Int,y:Int,z:Int,low:Int,high:Int&#41;:Int-instance-method">
+      <div class="signature">
+        
+        def <strong>int</strong>(x : Int, y : Int, z : Int, low : Int, high : Int) : Int
+
+        <a class="method-permalink" href="#int%28x%3AInt%2Cy%3AInt%2Cz%3AInt%2Clow%3AInt%2Chigh%3AInt%29%3AInt-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/redcodefinal/perlin_noise/blob/bb81c68493daef67b7e7215700e697e04e50d28e/src/perlin_noise/perlin_noise.cr#L42" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="int&#40;x:Int,low:Int,high:Int&#41;:Int-instance-method">
+      <div class="signature">
+        
+        def <strong>int</strong>(x : Int, low : Int, high : Int) : Int
+
+        <a class="method-permalink" href="#int%28x%3AInt%2Clow%3AInt%2Chigh%3AInt%29%3AInt-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/redcodefinal/perlin_noise/blob/bb81c68493daef67b7e7215700e697e04e50d28e/src/perlin_noise/perlin_noise.cr#L32" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="item&#40;x:Int,y:Int,z:Int,array:Indexable&#40;T&#41;&#41;:TforallT-instance-method">
+      <div class="signature">
+        
+        def <strong>item</strong>(x : Int, y : Int, z : Int, array : Indexable(T)) : T forall T
+
+        <a class="method-permalink" href="#item%28x%3AInt%2Cy%3AInt%2Cz%3AInt%2Carray%3AIndexable%28T%29%29%3ATforallT-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/redcodefinal/perlin_noise/blob/bb81c68493daef67b7e7215700e697e04e50d28e/src/perlin_noise/perlin_noise.cr#L85" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="item&#40;x:Int,y:Int,array:Indexable&#40;T&#41;&#41;:TforallT-instance-method">
+      <div class="signature">
+        
+        def <strong>item</strong>(x : Int, y : Int, array : Indexable(T)) : T forall T
+
+        <a class="method-permalink" href="#item%28x%3AInt%2Cy%3AInt%2Carray%3AIndexable%28T%29%29%3ATforallT-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/redcodefinal/perlin_noise/blob/bb81c68493daef67b7e7215700e697e04e50d28e/src/perlin_noise/perlin_noise.cr#L81" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="item&#40;x:Int,array:Indexable&#40;T&#41;&#41;:TforallT-instance-method">
+      <div class="signature">
+        
+        def <strong>item</strong>(x : Int, array : Indexable(T)) : T forall T
+
+        <a class="method-permalink" href="#item%28x%3AInt%2Carray%3AIndexable%28T%29%29%3ATforallT-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/redcodefinal/perlin_noise/blob/bb81c68493daef67b7e7215700e697e04e50d28e/src/perlin_noise/perlin_noise.cr#L77" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="noise&#40;x:Int&#41;:Float-instance-method">
+      <div class="signature">
+        
+        def <strong>noise</strong>(x : Int) : Float
+
+        <a class="method-permalink" href="#noise%28x%3AInt%29%3AFloat-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/redcodefinal/perlin_noise/blob/bb81c68493daef67b7e7215700e697e04e50d28e/src/perlin_noise/perlin_noise.cr#L16" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="noise&#40;x:Int,y:Int&#41;:Float-instance-method">
+      <div class="signature">
+        
+        def <strong>noise</strong>(x : Int, y : Int) : Float
+
+        <a class="method-permalink" href="#noise%28x%3AInt%2Cy%3AInt%29%3AFloat-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/redcodefinal/perlin_noise/blob/bb81c68493daef67b7e7215700e697e04e50d28e/src/perlin_noise/perlin_noise.cr#L20" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="noise&#40;x:Int,y:Int,z:Int&#41;:Float-instance-method">
+      <div class="signature">
+        
+        def <strong>noise</strong>(x : Int, y : Int, z : Int) : Float
+
+        <a class="method-permalink" href="#noise%28x%3AInt%2Cy%3AInt%2Cz%3AInt%29%3AFloat-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/redcodefinal/perlin_noise/blob/bb81c68493daef67b7e7215700e697e04e50d28e/src/perlin_noise/perlin_noise.cr#L24" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="octave:Float32-instance-method">
+      <div class="signature">
+        
+        def <strong>octave</strong> : Float32
+
+        <a class="method-permalink" href="#octave%3AFloat32-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/redcodefinal/perlin_noise/blob/bb81c68493daef67b7e7215700e697e04e50d28e/src/perlin_noise/perlin_noise.cr#L7" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="octave&#61;&#40;octave:Float32&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>octave=</strong>(octave : Float32)
+
+        <a class="method-permalink" href="#octave%3D%28octave%3AFloat32%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/redcodefinal/perlin_noise/blob/bb81c68493daef67b7e7215700e697e04e50d28e/src/perlin_noise/perlin_noise.cr#L7" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="persistance:Float32-instance-method">
+      <div class="signature">
+        
+        def <strong>persistance</strong> : Float32
+
+        <a class="method-permalink" href="#persistance%3AFloat32-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/redcodefinal/perlin_noise/blob/bb81c68493daef67b7e7215700e697e04e50d28e/src/perlin_noise/perlin_noise.cr#L6" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="persistance&#61;&#40;persistance:Float32&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>persistance=</strong>(persistance : Float32)
+
+        <a class="method-permalink" href="#persistance%3D%28persistance%3AFloat32%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/redcodefinal/perlin_noise/blob/bb81c68493daef67b7e7215700e697e04e50d28e/src/perlin_noise/perlin_noise.cr#L6" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="seed:Int32-instance-method">
+      <div class="signature">
+        
+        def <strong>seed</strong> : Int32
+
+        <a class="method-permalink" href="#seed%3AInt32-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/redcodefinal/perlin_noise/blob/bb81c68493daef67b7e7215700e697e04e50d28e/src/perlin_noise/perlin_noise.cr#L3" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="step:Float32-instance-method">
+      <div class="signature">
+        
+        def <strong>step</strong> : Float32
+
+        <a class="method-permalink" href="#step%3AFloat32-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/redcodefinal/perlin_noise/blob/bb81c68493daef67b7e7215700e697e04e50d28e/src/perlin_noise/perlin_noise.cr#L5" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="step&#61;&#40;step:Float32&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>step=</strong>(step : Float32)
+
+        <a class="method-permalink" href="#step%3D%28step%3AFloat32%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/redcodefinal/perlin_noise/blob/bb81c68493daef67b7e7215700e697e04e50d28e/src/perlin_noise/perlin_noise.cr#L5" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="x_offset:Float32-instance-method">
+      <div class="signature">
+        
+        def <strong>x_offset</strong> : Float32
+
+        <a class="method-permalink" href="#x_offset%3AFloat32-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/redcodefinal/perlin_noise/blob/bb81c68493daef67b7e7215700e697e04e50d28e/src/perlin_noise/perlin_noise.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="x_offset&#61;&#40;x_offset:Float32&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>x_offset=</strong>(x_offset : Float32)
+
+        <a class="method-permalink" href="#x_offset%3D%28x_offset%3AFloat32%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/redcodefinal/perlin_noise/blob/bb81c68493daef67b7e7215700e697e04e50d28e/src/perlin_noise/perlin_noise.cr#L9" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="y_offset:Float32-instance-method">
+      <div class="signature">
+        
+        def <strong>y_offset</strong> : Float32
+
+        <a class="method-permalink" href="#y_offset%3AFloat32-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/redcodefinal/perlin_noise/blob/bb81c68493daef67b7e7215700e697e04e50d28e/src/perlin_noise/perlin_noise.cr#L10" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="y_offset&#61;&#40;y_offset:Float32&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>y_offset=</strong>(y_offset : Float32)
+
+        <a class="method-permalink" href="#y_offset%3D%28y_offset%3AFloat32%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/redcodefinal/perlin_noise/blob/bb81c68493daef67b7e7215700e697e04e50d28e/src/perlin_noise/perlin_noise.cr#L10" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="z_offset:Float32-instance-method">
+      <div class="signature">
+        
+        def <strong>z_offset</strong> : Float32
+
+        <a class="method-permalink" href="#z_offset%3AFloat32-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/redcodefinal/perlin_noise/blob/bb81c68493daef67b7e7215700e697e04e50d28e/src/perlin_noise/perlin_noise.cr#L11" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="z_offset&#61;&#40;z_offset:Float32&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>z_offset=</strong>(z_offset : Float32)
+
+        <a class="method-permalink" href="#z_offset%3D%28z_offset%3AFloat32%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/redcodefinal/perlin_noise/blob/bb81c68493daef67b7e7215700e697e04e50d28e/src/perlin_noise/perlin_noise.cr#L11" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+
+</div>
+
+</body>
+</html>
