@@ -150,7 +150,7 @@ class PerlinNoise
       frequency *= 2
       amplitude *= p
     end    
-    return total
+    return total.to_f32
   end
 
   private def perlin_smooth_noise_3d(x : Int, y : Int, z : Int) : Float
@@ -222,6 +222,6 @@ class PerlinNoise
       frequency *= 2
       amplitude *= p
     end
-    return total    
+    return total.to_f32
   end
 end
