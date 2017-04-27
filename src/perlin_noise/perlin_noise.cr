@@ -60,17 +60,17 @@ class PerlinNoise
   end
 
   def bool(x : Int, chance : Int, outof : Int)
-    raise "chance must be less than out of" if outof >= chance
+    raise "chance must be less than out of" unless outof >= chance
     int(x, 1, outof) <= chance
   end
   
   def bool(x : Int, y : Int, chance : Int, outof : Int)
-    raise "chance must be less than out of" if outof >= chance
+    raise "chance must be less than out of" unless outof >= chance
     int(x, y, 1, outof) <= chance
   end
 
   def bool(x : Int, y : Int, z : Int, chance : Int, outof : Int)
-    raise "chance must be less than out of" if outof >= chance
+    raise "chance must be less than out of" unless outof >= chance
     int(x, y, z, 1, outof) <= chance
   end
 
