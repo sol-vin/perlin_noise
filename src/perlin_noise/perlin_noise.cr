@@ -69,7 +69,7 @@ class PerlinNoise
     int(x, y, 1, outof, a_seed) <= chance
   end
 
-  def bool(x : Int, y : Int, z : Int, chance : Int, outof : Int, Float32  : Float= 1.0_f32)
+  def bool(x : Int, y : Int, z : Int, chance : Int, outof : Int, a_seed : Float32 = 1.0_f32)
     raise "chance must be less than out of" unless outof >= chance
     int(x, y, z, 1, outof, a_seed) <= chance
   end
