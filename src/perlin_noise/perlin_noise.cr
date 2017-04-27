@@ -31,17 +31,17 @@ class PerlinNoise
 
   def int(x : Int, low : Int, high : Int) : Int
     raise "low must be lower than high" if low >= high
-    ((noise(x).to_s.split('.').last.reverse[0..17].to_i % (high + 1 - low)) + low)
+    ((noise(x).to_s.split('.').last.reverse[0..15].to_i % (high + 1 - low)) + low)
   end
 
   def int(x : Int, y : Int, low : Int, high : Int) : Int
     raise "low must be lower than high" if low >= high
-    (noise(x, y).to_s.split('.').last.reverse[0..17].to_i % (high+1 - low)) + low
+    (noise(x, y).to_s.split('.').last.reverse[0..15].to_i % (high+1 - low)) + low
   end
 
   def int(x : Int, y : Int, z : Int, low : Int, high : Int) : Int
     raise "low must be lower than high" if low >= high
-    (noise(x, y, z).to_s.split('.').last.reverse[0..17].to_i % (high+1 - low)) + low
+    (noise(x, y, z).to_s.split('.').last.reverse[0..15].to_i % (high+1 - low)) + low
   end
   
   def float(x : Int, low : Float, high : Float) : Float
