@@ -31,17 +31,17 @@ class PerlinNoise
 
   def int(x : Int, low : Int, high : Int, a_seed : Float32 = 1.0_f32) : Int
     raise "low must be lower than high" if low >= high
-    ((noise(x, a_seed).round(15).to_s.split('.').last.reverse.to_i64 % (high + 1 - low)) + low)
+    ((noise(x, a_seed).to_s.gsub("e-", "").to_f.to_s.split('.').last.reverse.to_i64 % (high + 1 - low)) + low)
   end
 
   def int(x : Int, y : Int, low : Int, high : Int, a_seed : Float32 = 1.0_f32) : Int
     raise "low must be lower than high" if low >= high
-    (noise(x, y, a_seed).round(15).to_s.split('.').last.reverse.to_i64 % (high+1 - low)) + low
+    (noise(x, y, a_seed).to_s.gsub("e-", "").to_f.to_s.split('.').last.reverse.to_i64 % (high+1 - low)) + low
   end
 
   def int(x : Int, y : Int, z : Int, low : Int, high : Int, a_seed : Float32 = 1.0_f32) : Int
     raise "low must be lower than high" if low >= high
-    (noise(x, y, z, a_seed).round(15).to_s.split('.').last.reverse.to_i64 % (high+1 - low)) + low
+    (noise(x, y, z, a_seed).to_s.gsub("e-", "").to_f.to_s.split('.').last.reverse.to_i64 % (high+1 - low)) + low
   end
   
   def float(x : Int, low : Float, high : Float, a_seed : Float32 = 1.0_f32) : Float
