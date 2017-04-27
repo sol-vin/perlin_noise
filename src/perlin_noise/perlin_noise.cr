@@ -6,9 +6,9 @@ class PerlinNoise
   property persistance : Float32 = 0.2_f32
   property octave : Float32 = 1.0_f32
   
-  property x_offset : Float32 = 0.0_f32
-  property y_offset : Float32 = 0.0_f32
-  property z_offset : Float32 = 0.0_f32
+  property x_offset : Float32 = 0.3_f32
+  property y_offset : Float32 = 0.4_f32
+  property z_offset : Float32 = 0.5_f32
 
   def initialize(@seed = 1)
   end
@@ -31,17 +31,17 @@ class PerlinNoise
 
   def int(x : Int, low : Int, high : Int, a_seed : Float32 = 1.0_f32) : Int
     raise "low must be lower than high" if low >= high
-    ((noise(x, a_seed).to_s.split('.').last.reverse[0..15].to_i64 % (high + 1 - low)) + low)
+    ((noise(x, a_seed).round(15).to_s.split('.').last.reverse.to_i64 % (high + 1 - low)) + low)
   end
 
   def int(x : Int, y : Int, low : Int, high : Int, a_seed : Float32 = 1.0_f32) : Int
     raise "low must be lower than high" if low >= high
-    (noise(x, y, a_seed).to_s.split('.').last.reverse[0..15].to_i64 % (high+1 - low)) + low
+    (noise(x, y, a_seed).round(15).to_s.split('.').last.reverse.to_i64 % (high+1 - low)) + low
   end
 
   def int(x : Int, y : Int, z : Int, low : Int, high : Int, a_seed : Float32 = 1.0_f32) : Int
     raise "low must be lower than high" if low >= high
-    (noise(x, y, z, a_seed).to_s.split('.').last.reverse[0..15].to_i64 % (high+1 - low)) + low
+    (noise(x, y, z, a_seed).round(15).to_s.split('.').last.reverse.to_i64 % (high+1 - low)) + low
   end
   
   def float(x : Int, low : Float, high : Float, a_seed : Float32 = 1.0_f32) : Float
