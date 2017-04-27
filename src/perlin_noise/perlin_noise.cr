@@ -26,8 +26,10 @@ class PerlinNoise
   end
 
   def height(x : Int, y : Int, max_height : Int, a_seed : Float32 = 1.0_f32) : Int
-    n = ((noise(x ,y, a_seed) + 1.2) / 2.6)
-    puts "#{x} #{y} #{max_height} #{n}" if n > 1.0
+    n = ((noise(x ,y, a_seed) + 1.0) / 2.0)
+    if n > 1.0
+      n = 1.0 - (n - 1.0)
+    end
     (n * max_height).to_i
   end
 
