@@ -12,78 +12,78 @@ class PerlinNoise
 
   def initialize(@seed = 1)
   end
-
-  def noise(x : Int) : Float
-    perlin_octaves_2d((x + x_offset) * step, y_offset, persistance, octave)
+  
+  def noise(x : Int, a_seed : Float= 1.0) : Float
+    perlin_octaves_2d(((x * a_seed) + x_offset) * step, y_offset, persistance, octave)
   end
 
-  def noise(x : Int, y : Int) : Float
-    perlin_octaves_2d((x + x_offset) * step, (y + y_offset) * step, persistance, octave)
+  def noise(x : Int, y : Int, a_seed : Float= 1.0) : Float
+    perlin_octaves_2d(((x * a_seed) + x_offset) * step, ((y * a_seed) + y_offset) * step, persistance, octave)
   end
 
-  def noise(x : Int, y : Int, z : Int) : Float
-    perlin_octaves_3d((x + x_offset) * step, (y + y_offset) * step, (z + z_offset) * step, persistance, octave)    
+  def noise(x : Int, y : Int, z : Int, a_seed : Float= 1.0) : Float
+    perlin_octaves_3d(((x * a_seed) + x_offset) * step, ((y * a_seed) + y_offset) * step, ((z * a_seed) + z_offset) * step, persistance, octave)    
   end
 
-  def height(x : Int, y : Int, max_height : Int = 10) : Int
-    ((noise(x ,y) + 1.0 / 2.0) * max_height).to_i
+  def height(x : Int, y : Int, max_height : Int, a_seed : Float= 1.0) : Int
+    ((noise(x ,y, a_seed) + 1.0 / 2.0) * max_height).to_i
   end
 
-  def int(x : Int, low : Int, high : Int) : Int
+  def int(x : Int, low : Int, high : Int, a_seed : Float= 1.0) : Int
     raise "low must be lower than high" if low >= high
-    ((noise(x).to_s.split('.').last.reverse[0..15].to_i64 % (high + 1 - low)) + low)
+    ((noise(x, a_seed).to_s.split('.').last.reverse[0..15].to_i64 % (high + 1 - low)) + low)
   end
 
-  def int(x : Int, y : Int, low : Int, high : Int) : Int
+  def int(x : Int, y : Int, low : Int, high : Int, a_seed : Float= 1.0) : Int
     raise "low must be lower than high" if low >= high
-    (noise(x, y).to_s.split('.').last.reverse[0..15].to_i64 % (high+1 - low)) + low
+    (noise(x, y, a_seed).to_s.split('.').last.reverse[0..15].to_i64 % (high+1 - low)) + low
   end
 
-  def int(x : Int, y : Int, z : Int, low : Int, high : Int) : Int
+  def int(x : Int, y : Int, z : Int, low : Int, high : Int, a_seed : Float= 1.0) : Int
     raise "low must be lower than high" if low >= high
-    (noise(x, y, z).to_s.split('.').last.reverse[0..15].to_i64 % (high+1 - low)) + low
+    (noise(x, y, z, a_seed).to_s.split('.').last.reverse[0..15].to_i64 % (high+1 - low)) + low
   end
   
-  def float(x : Int, low : Float, high : Float) : Float
+  def float(x : Int, low : Float, high : Float, a_seed : Float= 1.0) : Float
     raise "low must be lower than high" if low >= high
-    (noise(x).to_s.split('.').last.reverse.insert(0, '.').to_f * (high-low)) + low
+    (noise(x, a_seed).to_s.split('.').last.reverse.insert(0, '.').to_f * (high-low)) + low
   end
 
-  def float(x : Int, y : Int, low : Float, high : Float) : Float
+  def float(x : Int, y : Int, low : Float, high : Float, a_seed : Float= 1.0) : Float
     raise "low must be lower than high" if low >= high
-    (noise(x, y).to_s.split('.').last.reverse.insert(0, '.').to_f * (high-low)) + low
+    (noise(x, y, a_seed).to_s.split('.').last.reverse.insert(0, '.').to_f * (high-low)) + low
   end
 
-  def float(x : Int, y : Int, z : Int, low : Float, high : Float) : Float
+  def float(x : Int, y : Int, z : Int, low : Float, high : Float, a_seed : Float= 1.0) : Float
     raise "low must be lower than high" if low >= high
-    (noise(x, y, z).to_s.split('.').last.reverse.insert(0, '.').to_f * (high-low)) + low
+    (noise(x, y, z, a_seed).to_s.split('.').last.reverse.insert(0, '.').to_f * (high-low)) + low
   end
 
-  def bool(x : Int, chance : Int, outof : Int)
+  def bool(x : Int, chance : Int, outof : Int, a_seed : Float= 1.0)
     raise "chance must be less than out of" unless outof >= chance
-    int(x, 1, outof) <= chance
+    int(x, 1, outof, a_seed) <= chance
   end
   
-  def bool(x : Int, y : Int, chance : Int, outof : Int)
+  def bool(x : Int, y : Int, chance : Int, outof : Int, a_seed : Float= 1.0)
     raise "chance must be less than out of" unless outof >= chance
-    int(x, y, 1, outof) <= chance
+    int(x, y, 1, outof, a_seed) <= chance
   end
 
-  def bool(x : Int, y : Int, z : Int, chance : Int, outof : Int)
+  def bool(x : Int, y : Int, z : Int, chance : Int, outof : Int, a_seed : Float= 1.0)
     raise "chance must be less than out of" unless outof >= chance
-    int(x, y, z, 1, outof) <= chance
+    int(x, y, z, 1, outof, a_seed) <= chance
   end
 
-  def item(x : Int, array : Indexable(T)) : T forall T
-    array[int(x, 0, array.size-1)]
+  def item(x : Int, array : Indexable(T), a_seed : Float= 1.0) : T forall T
+    array[int(x, 0, array.size-1, a_seed)]
   end
 
-  def item(x : Int, y : Int, array : Indexable(T)) : T forall T
-    array[int(x, y, 0, array.size-1)]
+  def item(x : Int, y : Int, array : Indexable(T), a_seed : Float= 1.0) : T forall T
+    array[int(x, y, 0, array.size-1, a_seed)]
   end
  
-  def item(x : Int, y : Int, z : Int, array : Indexable(T)) : T forall T
-    array[int(x, y, z, 0, array.size-1)]
+  def item(x : Int, y : Int, z : Int, array : Indexable(T), a_seed : Float= 1.0) : T forall T
+    array[int(x, y, z, 0, array.size-1, a_seed)]
   end
 
 
