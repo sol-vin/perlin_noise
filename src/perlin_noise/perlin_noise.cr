@@ -90,6 +90,57 @@ class PerlinNoise
     array[int(x, y, z, 0, array.size-1, a_seed)]
   end
 
+  def shuffle(x : Int, array : Indexable(T), a_seed : Float32 = 1.0_f32) : Array(T) forall T
+    indexes = (0...array.size).to_a
+    output = [] of T
+    (array.size).times do |z|
+      if indexes.size > 1
+        index = int(x, 0, indexes.size-1, a_seed)
+        output << array[indexes[index]]
+        indexes.delete_at index
+      elsif indexes.size == 1
+        output << array[indexes.pop]
+      else
+        puts "bad"
+      end
+    end
+    output
+  end
+
+  def shuffle(x : Int, y : Int, array : Indexable(T), a_seed : Float32 = 1.0_f32) : Array(T) forall T
+    indexes = (0...array.size).to_a
+    output = [] of T
+    (array.size).times do |z|
+      if indexes.size > 1
+        index = int(x, y, 0, indexes.size-1, a_seed)
+        output << array[indexes[index]]
+        indexes.delete_at index
+      elsif indexes.size == 1
+        output << array[indexes.pop]
+      else
+        puts "bad"
+      end
+    end
+    output
+  end
+
+  def shuffle(x : Int, y : Int, z : Int, array : Indexable(T), a_seed : Float32 = 1.0_f32) : Array(T) forall T
+    indexes = (0...array.size).to_a
+    output = [] of T
+    (array.size).times do |z|
+      if indexes.size > 1
+        index = int(x, y, z, 0, indexes.size-1, a_seed)
+        output << array[indexes[index]]
+        indexes.delete_at index
+      elsif indexes.size == 1
+        output << array[indexes.pop]
+      else
+        puts "bad"
+      end
+    end
+    output
+  end
+
 
   private def perlin_interpolate(a : Float, b : Float, x : Float) : Float
     ft = x * Math::PI
