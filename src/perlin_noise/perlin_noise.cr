@@ -33,6 +33,15 @@ class PerlinNoise
     (n * max_height).to_i
   end
 
+  def height_float(x : Int, y : Int, max_height : Int, a_seed : Float32 = 1.0_f32) : Int
+    n = ((noise(x ,y, a_seed) + 1.0) / 2.0)
+    if n > 1.0
+      n = 1.0 - (n - 1.0)
+    end
+    (n * max_height)
+  end
+
+
   def int(x : Int, low : Int, high : Int, a_seed : Float32 = 1.0_f32) : Int
     raise "low must be lower than high" if low >= high
     ((noise(x, a_seed).to_s.gsub("e-", "").to_f.to_s.split('.').last.reverse.to_i64 % (high + 1 - low)) + low)
