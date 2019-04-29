@@ -33,7 +33,7 @@ class PerlinNoise
     (n * max_height).to_i
   end
 
-  def height_float(x : Int, y : Int, max_height : Int, a_seed : Float32 = 1.0_f32) : Float
+  def height_float(x : Int, y : Int, max_height : Int = 1, a_seed : Float32 = 1.0_f32) : Float
     n = ((noise(x ,y, a_seed) + 1.0) / 2.0)
     if n > 1.0
       n = 1.0 - (n - 1.0)
@@ -43,47 +43,47 @@ class PerlinNoise
 
 
   def int(x : Int, low : Int, high : Int, a_seed : Float32 = 1.0_f32) : Int
-    raise "low must be lower than high" if low >= high
+    raise "low must be lower than high" if low > high
     ((noise(x, a_seed).to_s.gsub("e-", "").to_f.to_s.split('.').last.reverse.to_i64 % (high + 1 - low)) + low)
   end
 
   def int(x : Int, y : Int, low : Int, high : Int, a_seed : Float32 = 1.0_f32) : Int
-    raise "low must be lower than high" if low >= high
+    raise "low must be lower than high" if low > high
     (noise(x, y, a_seed).to_s.gsub("e-", "").to_f.to_s.split('.').last.reverse.to_i64 % (high+1 - low)) + low
   end
 
   def int(x : Int, y : Int, z : Int, low : Int, high : Int, a_seed : Float32 = 1.0_f32) : Int
-    raise "low must be lower than high" if low >= high
+    raise "low must be lower than high" if low > high
     (noise(x, y, z, a_seed).to_s.gsub("e-", "").to_f.to_s.split('.').last.reverse.to_i64 % (high+1 - low)) + low
   end
   
   def float(x : Int, low : Float, high : Float, a_seed : Float32 = 1.0_f32) : Float
-    raise "low must be lower than high" if low >= high
+    raise "low must be lower than high" if low > high
     (noise(x, a_seed).to_s.split('.').last.reverse.insert(0, '.').to_f * (high-low)) + low
   end
 
   def float(x : Int, y : Int, low : Float, high : Float, a_seed : Float32 = 1.0_f32) : Float
-    raise "low must be lower than high" if low >= high
+    raise "low must be lower than high" if low > high
     (noise(x, y, a_seed).to_s.split('.').last.reverse.insert(0, '.').to_f * (high-low)) + low
   end
 
   def float(x : Int, y : Int, z : Int, low : Float, high : Float, a_seed : Float32 = 1.0_f32) : Float
-    raise "low must be lower than high" if low >= high
+    raise "low must be lower than high" if low > high
     (noise(x, y, z, a_seed).to_s.split('.').last.reverse.insert(0, '.').to_f * (high-low)) + low
   end
 
   def bool(x : Int, chance : Int, outof : Int, a_seed : Float32 = 1.0_f32)
-    raise "chance must be less than out of" unless outof >= chance
+    raise "chance must be less than out of" unless outof > chance
     int(x, 1, outof, a_seed) <= chance
   end
   
   def bool(x : Int, y : Int, chance : Int, outof : Int, a_seed : Float32 = 1.0_f32)
-    raise "chance must be less than out of" unless outof >= chance
+    raise "chance must be less than out of" unless outof > chance
     int(x, y, 1, outof, a_seed) <= chance
   end
 
   def bool(x : Int, y : Int, z : Int, chance : Int, outof : Int, a_seed : Float32 = 1.0_f32)
-    raise "chance must be less than out of" unless outof >= chance
+    raise "chance must be less than out of" unless outof > chance
     int(x, y, z, 1, outof, a_seed) <= chance
   end
 
