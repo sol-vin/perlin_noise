@@ -1,6 +1,6 @@
 # perlin_noise
 
-A Shard written for using Perlin Noise. Pretty much ripped word for word from (Spooner's perlin_noise)[https://github.com/Spooner/ruby-perlin/] gem's C extension.
+A Shard written for using Perlin Noise. Pretty much ripped word for word from [Spooner's perlin_noise](https://github.com/Spooner/ruby-perlin/) gem's C extension.
 
 ## Installation
 
