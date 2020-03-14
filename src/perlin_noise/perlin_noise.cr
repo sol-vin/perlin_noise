@@ -160,13 +160,13 @@ class PerlinNoise
   private def perlin_noise_2d(x : Int, y : Int) : Float
     n = x + y * 57_i32
     n = (n << 13) ^ n
-    return (1.0 - ((n * (n * n * 15731*seed + 789221*seed) + 1376312589*seed) & 0x7fffffff) / 1073741824.0)
+    return (1.0 - ((n &* (n &* n &* 15731&*seed &+ 789221&*seed) &+ 1376312589&*seed) & 0x7fffffff) / 1073741824.0)
   end
 
   private def perlin_noise_3d(x : Int, y : Int, z : Int) : Float
     n = x + y + z * 57_i32
     n = (n << 13) ^ n
-    return (1.0 - ((n * (n * n * 15731*seed + 789221*seed) + 1376312589*seed) & 0x7fffffff) / 1073741824.0)
+    return (1.0 - ((n &* (n &* n &* 15731&*seed &+ 789221&*seed) &+ 1376312589&*seed) & 0x7fffffff) / 1073741824.0)
   end
 
   private def perlin_smooth_noise_2d(x : Int, y : Int) : Float
