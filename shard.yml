@@ -5,3 +5,4 @@ authors:
   - Ian Rash <redcodefinal@gmail.com>
 
 license: MIT
+crystal: 0.33.0
