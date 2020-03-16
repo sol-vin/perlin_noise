@@ -6,9 +6,9 @@ class PerlinNoise
   property persistance : Float32 = 0.2_f32
   property octave : Float32 = 1.0_f32
   
-  property x_offset : Float32 = 0.3_f32
-  property y_offset : Float32 = 0.4_f32
-  property z_offset : Float32 = 0.5_f32
+  property x_offset : Float32 = 0.23123_f32
+  property y_offset : Float32 = 0.4523523_f32
+  property z_offset : Float32 = 0.562362_f32
 
   def initialize(@seed = 1)
   end
@@ -25,129 +25,64 @@ class PerlinNoise
     perlin_octaves_3d(((x * a_seed) + x_offset) * step, ((y * a_seed) + y_offset) * step, ((z * a_seed) + z_offset) * step, persistance, octave)    
   end
 
-  def height(x : Int, y : Int, max_height : Int, a_seed : Float32 = 1.0_f32) : Int
-    n = ((noise(x ,y, a_seed) + 1.0) / 2.0)
+  private def normalise_noise(x, y, z, a_seed)
+    n = ((noise(x, y, z, a_seed) + 1.0) / 2.0)
     if n > 1.0
       n = 1.0 - (n - 1.0)
     end
-    (n * max_height).to_i
+    n
   end
 
-  def height_float(x : Int, y : Int, max_height : Int = 1, a_seed : Float32 = 1.0_f32) : Float
-    n = ((noise(x ,y, a_seed) + 1.0) / 2.0)
-    if n > 1.0
-      n = 1.0 - (n - 1.0)
-    end
-    (n * max_height)
+  def int(x : Int, min : Int, max : Int, a_seed : Float32 = 1.0_f32) : Int
+    raise "max must be greater than min" if min >= max
+    (normalise_noise(x, 0, 0, a_seed) &* (max-min)).to_i.abs + min.to_i
   end
 
-
-  def int(x : Int, low : Int, high : Int, a_seed : Float32 = 1.0_f32) : Int
-    raise "low must be lower than high" if low > high
-    ((noise(x, a_seed).to_s.gsub("e-", "").to_f.to_s.split('.').last.reverse.to_i64 % (high + 1 - low)) + low)
-  end
-
-  def int(x : Int, y : Int, low : Int, high : Int, a_seed : Float32 = 1.0_f32) : Int
-    raise "low must be lower than high" if low > high
-    (noise(x, y, a_seed).to_s.gsub("e-", "").to_f.to_s.split('.').last.reverse.to_i64 % (high+1 - low)) + low
-  end
-
-  def int(x : Int, y : Int, z : Int, low : Int, high : Int, a_seed : Float32 = 1.0_f32) : Int
-    raise "low must be lower than high" if low > high
-    (noise(x, y, z, a_seed).to_s.gsub("e-", "").to_f.to_s.split('.').last.reverse.to_i64 % (high+1 - low)) + low
+  def int(x : Int, y : Int, min : Int, max : Int, a_seed : Float32 = 1.0_f32) : Int
+    raise "max must be greater than min" if min >= max
+    (normalise_noise(x, y, 0, a_seed) * (max-min)).to_i.abs + min.to_i
   end
   
-  def float(x : Int, low : Float, high : Float, a_seed : Float32 = 1.0_f32) : Float
-    raise "low must be lower than high" if low > high
-    (noise(x, a_seed).to_s.split('.').last.reverse.insert(0, '.').to_f * (high-low)) + low
+  def int(x : Int, y : Int, z : Int, min : Int, max : Int, a_seed : Float32 = 1.0_f32) : Int
+    raise "max must be greater than min" if min >= max
+    (normalise_noise(x, y, z, a_seed) * (max-min)).to_i.abs + min.to_i
   end
 
-  def float(x : Int, y : Int, low : Float, high : Float, a_seed : Float32 = 1.0_f32) : Float
-    raise "low must be lower than high" if low > high
-    (noise(x, y, a_seed).to_s.split('.').last.reverse.insert(0, '.').to_f * (high-low)) + low
+  def prng_int(x : Int, min : Int, max : Int, a_seed : Float32 = 1.0_f32) : Int
+    prng_int(x, 0, 0, min, max, a_seed)
   end
 
-  def float(x : Int, y : Int, z : Int, low : Float, high : Float, a_seed : Float32 = 1.0_f32) : Float
-    raise "low must be lower than high" if low > high
-    (noise(x, y, z, a_seed).to_s.split('.').last.reverse.insert(0, '.').to_f * (high-low)) + low
+  def prng_int(x : Int, y : Int, min : Int, max : Int, a_seed : Float32 = 1.0_f32) : Int
+    prng_int(x, y, 0, min, max, a_seed)
   end
 
-  def bool(x : Int, chance : Int, outof : Int, a_seed : Float32 = 1.0_f32)
-    raise "chance must be less than out of" unless outof > chance
-    int(x, 1, outof, a_seed) <= chance
-  end
-  
-  def bool(x : Int, y : Int, chance : Int, outof : Int, a_seed : Float32 = 1.0_f32)
-    raise "chance must be less than out of" unless outof > chance
-    int(x, y, 1, outof, a_seed) <= chance
-  end
-
-  def bool(x : Int, y : Int, z : Int, chance : Int, outof : Int, a_seed : Float32 = 1.0_f32)
-    raise "chance must be less than out of" unless outof > chance
-    int(x, y, z, 1, outof, a_seed) <= chance
+  def prng_int(x : Int, y : Int, z : Int, min : Int, max : Int, a_seed : Float32 = 1.0_f32) : Int
+    noise_seed = int(x, y, z, 0, Int32::MAX, a_seed)
+    Random.new(noise_seed).rand((min..(max-1)))
   end
 
   def item(x : Int, array : Indexable(T), a_seed : Float32 = 1.0_f32) : T forall T
-    array[int(x, 0, array.size-1, a_seed)]
+    array[int(x, 0, array.size, a_seed)]
   end
 
   def item(x : Int, y : Int, array : Indexable(T), a_seed : Float32 = 1.0_f32) : T forall T
-    array[int(x, y, 0, array.size-1, a_seed)]
+    array[int(x, y, 0, array.size, a_seed)]
   end
  
   def item(x : Int, y : Int, z : Int, array : Indexable(T), a_seed : Float32 = 1.0_f32) : T forall T
-    array[int(x, y, z, 0, array.size-1, a_seed)]
+    array[int(x, y, z, 0, array.size, a_seed)]
   end
 
-  def shuffle(x : Int, array : Indexable(T), a_seed : Float32 = 1.0_f32) : Array(T) forall T
-    indexes = (0...array.size).to_a
-    output = [] of T
-    (array.size).times do |z|
-      if indexes.size > 1
-        index = int(x, 0, indexes.size-1, a_seed)
-        output << array[indexes[index]]
-        indexes.delete_at index
-      elsif indexes.size == 1
-        output << array[indexes.pop]
-      else
-        puts "bad"
-      end
-    end
-    output
+  def prng_item(x : Int, array : Indexable(T), a_seed : Float32 = 1.0_f32) : T forall T
+    array[prng_int(x, 0, array.size, a_seed)]
   end
 
-  def shuffle(x : Int, y : Int, array : Indexable(T), a_seed : Float32 = 1.0_f32) : Array(T) forall T
-    indexes = (0...array.size).to_a
-    output = [] of T
-    (array.size).times do |z|
-      if indexes.size > 1
-        index = int(x, y, 0, indexes.size-1, a_seed)
-        output << array[indexes[index]]
-        indexes.delete_at index
-      elsif indexes.size == 1
-        output << array[indexes.pop]
-      else
-        puts "bad"
-      end
-    end
-    output
+  def prng_item(x : Int, y : Int, array : Indexable(T), a_seed : Float32 = 1.0_f32) : T forall T
+    array[prng_int(x, y, 0, array.size, a_seed)]
   end
-
-  def shuffle(x : Int, y : Int, z : Int, array : Indexable(T), a_seed : Float32 = 1.0_f32) : Array(T) forall T
-    indexes = (0...array.size).to_a
-    output = [] of T
-    (array.size).times do |z|
-      if indexes.size > 1
-        index = int(x, y, z, 0, indexes.size-1, a_seed)
-        output << array[indexes[index]]
-        indexes.delete_at index
-      elsif indexes.size == 1
-        output << array[indexes.pop]
-      else
-        puts "bad"
-      end
-    end
-    output
+ 
+  def prng_item(x : Int, y : Int, z : Int, array : Indexable(T), a_seed : Float32 = 1.0_f32) : T forall T
+    array[prng_int(x, y, z, 0, array.size, a_seed)]
   end
 
 
@@ -158,13 +93,13 @@ class PerlinNoise
   end
 
   private def perlin_noise_2d(x : Int, y : Int) : Float
-    n = x + y * 57_i32
+    n = x &+ y &* 57_i32
     n = (n << 13) ^ n
     return (1.0 - ((n &* (n &* n &* 15731&*seed &+ 789221&*seed) &+ 1376312589&*seed) & 0x7fffffff) / 1073741824.0)
   end
 
   private def perlin_noise_3d(x : Int, y : Int, z : Int) : Float
-    n = x + y + z * 57_i32
+    n = x &+ y &+ z &* 57_i32
     n = (n << 13) ^ n
     return (1.0 - ((n &* (n &* n &* 15731&*seed &+ 789221&*seed) &+ 1376312589&*seed) & 0x7fffffff) / 1073741824.0)
   end
