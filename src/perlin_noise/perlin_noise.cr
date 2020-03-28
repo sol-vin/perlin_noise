@@ -25,7 +25,7 @@ class PerlinNoise
     perlin_octaves_3d(((x * a_seed) + x_offset) * step, ((y * a_seed) + y_offset) * step, ((z * a_seed) + z_offset) * step, persistance, octave)    
   end
 
-  private def normalise_noise(x, y, z, a_seed)
+  def normalize_noise(x, y, z, a_seed = 1.0_f32)
     n = ((noise(x, y, z, a_seed) + 1.0) / 2.0)
     if n > 1.0
       n = 1.0 - (n - 1.0)
@@ -35,17 +35,17 @@ class PerlinNoise
 
   def int(x : Int, min : Int, max : Int, a_seed : Float32 = 1.0_f32) : Int
     raise "max must be greater than min" if min >= max
-    (normalise_noise(x, 0, 0, a_seed) &* (max-min)).to_i.abs + min.to_i
+    (normalize_noise(x, 0, 0, a_seed) * (max-min)).to_i.abs + min.to_i
   end
 
   def int(x : Int, y : Int, min : Int, max : Int, a_seed : Float32 = 1.0_f32) : Int
     raise "max must be greater than min" if min >= max
-    (normalise_noise(x, y, 0, a_seed) * (max-min)).to_i.abs + min.to_i
+    (normalize_noise(x, y, 0, a_seed) * (max-min)).to_i.abs + min.to_i
   end
   
   def int(x : Int, y : Int, z : Int, min : Int, max : Int, a_seed : Float32 = 1.0_f32) : Int
     raise "max must be greater than min" if min >= max
-    (normalise_noise(x, y, z, a_seed) * (max-min)).to_i.abs + min.to_i
+    (normalize_noise(x, y, z, a_seed) * (max-min)).to_i.abs + min.to_i
   end
 
   def prng_int(x : Int, min : Int, max : Int, a_seed : Float32 = 1.0_f32) : Int
